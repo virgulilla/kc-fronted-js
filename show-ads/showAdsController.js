@@ -1,5 +1,6 @@
 import { getAds } from './showAdsModel.js'
 import { buildAd, buildNoAdsAdvice } from './showAdsView.js'
+import { getUsserLogged } from '../check-auth/checkAuthController.js'
 
 export async function showAdsController() {
   try {
@@ -20,11 +21,13 @@ export async function showAdsController() {
   }
 }
 
-function drawAds(ads, adsContainer) {  
+async function drawAds(ads, adsContainer) {  
+  const user = await getUsserLogged() 
+  
   for (const ad of ads) {
-    const adElement = document.createElement('div')
-    adElement.className = 'bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow'
-    adElement.innerHTML = buildAd(ad)
+    const showDeleteButton = user && ad.userId === user.id
+    const adElement = document.createElement('div')    
+    adElement.innerHTML = buildAd(adElement, ad, showDeleteButton)
     adsContainer.appendChild(adElement)
   }
 }

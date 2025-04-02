@@ -1,4 +1,4 @@
-import { getToken, logout } from "./checkAuthModel.js";
+import { getToken, logout, getUser } from "./checkAuthModel.js";
 import { buildLogout } from "./checkAuthView.js";
 
 export function logoutOptionController() {    
@@ -19,4 +19,13 @@ export function logoutOptionController() {
 
 export function isLogged() {
     return getToken() !== null
+}
+
+export async function getUsserLogged() {
+    try {
+        return await getUser()
+    } catch (error) {
+        return null
+    }
+    
 }

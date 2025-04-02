@@ -2,7 +2,7 @@ export const buildAd = (adElement, ad, showDeleteButton) => {
   adElement.className = 'bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow'
   const deleteButton = showDeleteButton ? 
     `<div class="flex justify-end">
-  <button type="button" data-id=${ad.id} class="bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md transition">
+  <button type="button" data-id=${ad.id} class="delete-ad bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md transition">
     Eliminar
   </button>
 </div>` : ''

@@ -1,5 +1,5 @@
-import { getToken, logout, getUser } from "./checkAuthModel.js";
-import { buildLogout, showCreateButtonAd } from "./checkAuthView.js";
+import { getToken, logout, getUser } from "./checkAuthModel.js"
+import { buildLogout, showCreateButtonAd } from "./checkAuthView.js"
 
 export async function logoutOptionController() {    
     const token = getToken()

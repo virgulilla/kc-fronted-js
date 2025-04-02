@@ -7,3 +7,7 @@ export const buildLogout = (elem, name) => {
     elem.classList.toggle('logout')
     elem.setAttribute('href', '/logout.html')
 }
+
+export const showCreateButtonAd = (elem) => {
+    elem.classList.remove('hidden')
+}

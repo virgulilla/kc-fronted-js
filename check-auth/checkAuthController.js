@@ -1,11 +1,13 @@
 import { getToken, logout, getUser } from "./checkAuthModel.js";
 import { buildLogout } from "./checkAuthView.js";
 
-export function logoutOptionController() {    
+export async function logoutOptionController() {    
     const token = getToken()
     if (token) {
         const authOption = document.querySelector('#auth')
-        buildLogout(authOption)
+        const user = await getUsserLogged()
+        const name = user ? user.username : ''
+        buildLogout(authOption, name)
         const logoutElem = document.querySelector('.logout')
         if (logoutElem) {
             logoutElem.addEventListener('click', (e) => {

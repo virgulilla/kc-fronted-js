@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gualapop | Editar anuncio</title>
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-gray-100 flex flex-col min-h-screen">
+
+  <header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto px-4 py-4 flex items-center justify-between">
+      <a href="/" class="text-2xl font-bold text-emerald-600">Gualapop</a>
+
+      <form id="search" class="flex-grow max-w-md mx-4">
+        <input type="text" name="search" placeholder="Buscar anuncios..."
+          class="w-full border border-gray-300 rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+      </form>
+
+      <nav>
+        <a href="/login.html"
+          class="text-sm text-emerald-600 font-medium hover:underline transition">Login</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="flex-grow flex items-center justify-center px-4">
+    <section class="w-full max-w-md bg-white shadow-md rounded-lg my-5 p-8 space-y-6">
+      <h1 class="text-2xl font-bold text-center text-emerald-600">Editar anuncio</h1>
+
+      <div id="product-message" class="hidden text-sm text-center p-2 rounded-md"></div>
+
+      <div id="edit-message" class="hidden text-sm text-center p-2 rounded-md"></div>
+      <form id="edit-ad-form" class="space-y-4">
+        <div>
+          <label for="name" class="block text-sm font-medium text-gray-700">Nombre del producto</label>
+          <input type="text" id="name" name="name" required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        </div>
+
+        <div>
+          <label for="description" class="block text-sm font-medium text-gray-700">Descripción</label>
+          <textarea id="description" name="description" required rows="3"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm resize-none focus:outline-none focus:ring-2 focus:ring-emerald-500"></textarea>
+        </div>
+
+        <div>
+          <label for="price" class="block text-sm font-medium text-gray-700">Precio (€)</label>
+          <input type="number" id="price" name="price" step="0.01" min="0" required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        </div>
+
+        <div>
+          <label for="type" class="block text-sm font-medium text-gray-700">Tipo</label>
+          <select id="type" name="type" required
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm bg-white focus:outline-none focus:ring-2 focus:ring-emerald-500">
+            <option value="buy">Compra</option>
+            <option value="sell">Venta</option>
+          </select>
+        </div>
+
+        <div>
+          <label for="photo" class="block text-sm font-medium text-gray-700">URL de la imagen</label>
+          <input type="url" id="photo" name="photo"
+            class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-md shadow-sm text-sm focus:outline-none focus:ring-2 focus:ring-emerald-500" />
+        </div>
+
+        <div>
+          <button type="submit"
+            
+          class="w-full bg-emerald-600 hover:bg-emerald-700 text-white font-semibold py-2 px-4 rounded-md transition">Guardar cambios</button>
+        </div>
+      </form>
+    </section>
+  </main>
+
+  <footer class="bg-white border-t">
+    <div class="max-w-7xl mx-auto px-4 py-6 text-center text-sm text-emerald-600">
+      © 2025 Gualapop. Todos los derechos reservados.
+    </div>
+  </footer>
+
+  <script type="module" src="./edit-ad.js"></script>
+</body>
+</html>

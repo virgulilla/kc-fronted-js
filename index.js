@@ -17,7 +17,23 @@ document.addEventListener('DOMContentLoaded', () => {
       const adId = event.target.dataset.id
       deleteAdController(adId)
     }
+
+    if (event.target.matches('#prev-page')) {
+      changePage(-1)
+    }
+
+    if (event.target.matches('#next-page')) {
+      changePage(1)
+    }
+
   })
-
-
 })
+
+function changePage(num) {
+  const params = new URLSearchParams(window.location.search)
+  const currentPage = parseInt(params.get('page')) || 1
+  const newPage = Math.max(1, currentPage + num)
+
+  params.set('page', newPage);
+  window.location.search = params.toString()
+}

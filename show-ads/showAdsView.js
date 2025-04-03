@@ -34,3 +34,10 @@ export const flashSuccessMessage = (elem) => {
   elem.classList.add('bg-emerald-100', 'text-emerald-700')
   sessionStorage.removeItem('successMessage')
 }
+
+export const updatePagination = (page, totalPages) => {
+  const prevBtn = document.querySelector('#prev-page')
+  const nextBtn = document.querySelector('#next-page')
+  if (prevBtn) prevBtn.disabled = page <= 1
+  if (nextBtn) nextBtn.disabled = page >= totalPages
+}

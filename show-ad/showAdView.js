@@ -1,6 +1,6 @@
 export const buildAdCard = (adElement, ad) => {
   adElement.className = 'bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow'
-  // TODO: Recibir por param si ha de pintar el boton de eliminar
+  
  return `
       <article class="bg-white shadow-lg rounded-lg overflow-hidden">
         <img src="${ad.photo || 'https://images.pexels.com/photos/28216688/pexels-photo-28216688/free-photo-of-acampada-de-otono.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}" 

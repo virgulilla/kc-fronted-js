@@ -9,7 +9,12 @@ export async function showAdsController() {
     flashSuccessMessage(flashMessageElement)
     adsContainer.innerHTML = '<p class="text-gray-500 text-center col-span-full">Cargando anuncios...</p>'
     
-    const ads = await getAds()
+    const params = new URLSearchParams(window.location.search)    
+    const filters = {
+      search: params.get('q')
+    }
+    
+    const ads = await getAds(filters)
     adsContainer.innerHTML = ''
 
     if (ads.length > 0) {

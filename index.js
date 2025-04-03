@@ -26,6 +26,11 @@ document.addEventListener('DOMContentLoaded', () => {
       changePage(1)
     }
 
+    if (event.target.closest('#mobile-menu-button')) {      
+      const mobileMenu = document.querySelector('#mobile-menu');
+      mobileMenu.classList.toggle('hidden');
+    }
+
   })
 })
 

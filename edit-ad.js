@@ -16,4 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
     editAdController(form, adId, true)
   })
 
+  const mobileMenuButton = document.querySelector('#mobile-menu-button')  
+  mobileMenuButton.addEventListener('click', () => {
+    const mobileMenu = document.querySelector('#mobile-menu')
+    mobileMenu.classList.toggle('hidden')
+  })
+
 })

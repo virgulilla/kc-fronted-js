@@ -1,6 +1,6 @@
 import { deletetAd } from './deleteAdModel.js'
 import { getToken } from "../check-auth/checkAuthModel.js"
-import { buildMessageSuccess, buildMessageError } from "./deleteView.js"
+import { buildMessageError } from "./deleteView.js"
 
 const deleteMessageElemeent = document.querySelector('#delete-message')
 
@@ -9,7 +9,7 @@ export async function deleteAdController(adId) {
     const token = getToken()
     await deletetAd(adId, token)
     window.location.href= '/'    
-    buildMessageSuccess(deleteMessageElemeent)
+    sessionStorage.setItem('successMessage', 'Anuncio eliminado correctamente')
   } catch (error) {
     buildMessageError(deleteMessageElemeent, error.message)
   }

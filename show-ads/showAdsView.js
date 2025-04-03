@@ -24,3 +24,13 @@ export const buildAd = (adElement, ad, showDeleteButton) => {
 export const buildNoAdsAdvice = () => {
   return '<p class="text-gray-500 text-center col-span-full">No hay anuncios disponibles.</p>'
 }
+
+export const flashSuccessMessage = (elem) => {
+  const message = sessionStorage.getItem('successMessage')
+  if (!message) return
+  elem.textContent = message
+  elem.classList.remove('hidden')
+  elem.classList.remove('bg-red-100', 'text-red-700')
+  elem.classList.add('bg-emerald-100', 'text-emerald-700')
+  sessionStorage.removeItem('successMessage')
+}

@@ -1,10 +1,12 @@
 import { getAds } from './showAdsModel.js'
-import { buildAd, buildNoAdsAdvice } from './showAdsView.js'
+import { buildAd, buildNoAdsAdvice, flashSuccessMessage } from './showAdsView.js'
 import { getUsserLogged } from '../check-auth/checkAuthController.js'
 
 export async function showAdsController() {
   try {
     const adsContainer = document.getElementById('ads-list')
+    const flashMessageElement = document.querySelector('#flash-message')    
+    flashSuccessMessage(flashMessageElement)
     adsContainer.innerHTML = '<p class="text-gray-500 text-center col-span-full">Cargando anuncios...</p>'
     
     const ads = await getAds()

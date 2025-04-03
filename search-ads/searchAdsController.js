@@ -12,8 +12,6 @@ export function initSearch(formSelector = '#search') {
       event.preventDefault()
       const formData = new FormData(searchForm)
       const value = formData.get(input.name || 'search')
-      if (value) {
-        window.location.href = `/index.html?q=${encodeURIComponent(value)}`
-      }
+      window.location.href = `/index.html?q=${encodeURIComponent(value)}`
     })
   }

@@ -1,11 +1,11 @@
 import { getAd } from './showAdModel.js'
-import { buildAdCard, buildNoAdAdvice } from './showAdView.js'
+import { buildAdCard, buildNoAdAdvice, showLoading, flashErrorMessage } from './showAdView.js'
 
 const adContainer = document.getElementById('ad-card')
 
 export async function showAdController() {
   try {    
-    adContainer.innerHTML = '<p class="text-gray-500 text-center col-span-full">Cargando anuncio...</p>'
+    showLoading(adContainer)
     
     const adId = window.location.hash.substring(1)
     const ad = await getAd(adId)
@@ -17,7 +17,7 @@ export async function showAdController() {
     }
     
   } catch (error) {
-    adContainer.innerHTML = '<p class="text-red-500 text-center col-span-full">Error al cargar el anuncio.</p>'
+    flashErrorMessage(adContainer)
   }
 }
 

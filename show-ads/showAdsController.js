@@ -1,15 +1,21 @@
 import { getAds } from './showAdsModel.js'
-import { buildAd, buildNoAdsAdvice, flashSuccessMessage, updatePagination } from './showAdsView.js'
+import { 
+  buildAd, 
+  buildNoAdsAdvice, 
+  flashSuccessMessage, 
+  flashErrorMessage, 
+  updatePagination, 
+  showLoading } from './showAdsView.js'
 import { getUsserLogged } from '../check-auth/checkAuthController.js'
 
 const LIMIT = 10
+const flashMessageElement = document.querySelector('#flash-message')
 
 export async function showAdsController() {
   try {
-    const adsContainer = document.getElementById('ads-list')
-    const flashMessageElement = document.querySelector('#flash-message')    
+    const adsContainer = document.getElementById('ads-list')    
     flashSuccessMessage(flashMessageElement)
-    adsContainer.innerHTML = '<p class="text-gray-500 text-center col-span-full">Cargando anuncios...</p>'
+    showLoading(adsContainer)
     
     const params = new URLSearchParams(window.location.search)    
     const page = Number(params.get('page')) || 1
@@ -31,7 +37,7 @@ export async function showAdsController() {
     }
     
   } catch (error) {
-    adsContainer.innerHTML = '<p class="text-red-500 text-center col-span-full">Error al cargar los anuncios.</p>'
+    flashErrorMessage(flashMessageElement)    
   }
 }
 

@@ -22,6 +22,21 @@ export const buildAdCard = (adElement, ad) => {
     `
 }
 
+export const flashErrorMessage = (elem) => {  
+  elem.textContent = 'Error al cargar los anuncios.'
+  elem.classList.remove('hidden')  
+  elem.classList.remove('bg-emerald-100', 'text-emerald-700')
+  elem.classList.add('bg-red-100', 'text-red-700')
+}
+
 export const buildNoAdAdvice = () => {
   return '<p class="text-gray-500 text-center col-span-full">El anuncio solicitado no está disponible.</p>'   
+}
+
+export function showLoading(elem) {
+  elem.innerHTML = `
+    <div class="flex justify-center items-center col-span-full py-8">
+      <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-opacity-50"></div>
+    </div>
+  `;
 }

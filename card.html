@@ -54,7 +54,11 @@
 
   <main class="flex-grow flex items-center justify-center p-6 flex-col">
     <div id="flash-message" class="w-full text-sm text-center p-2 rounded-md mb-4"></div>
-    <div id="ad-card" class="w-full max-w-lg"></div>
+    <div class="loader hidden flex justify-center items-center col-span-full py-8">
+      <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-opacity-50"></div>
+    </div>
+    <div id="ad-card" class="w-full max-w-lg">
+    </div>
   </main>
   
   <footer class="bg-white border-t">

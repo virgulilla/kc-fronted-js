@@ -48,11 +48,3 @@ export const updatePagination = (page, totalPages) => {
   if (prevBtn) prevBtn.disabled = page <= 1
   if (nextBtn) nextBtn.disabled = page >= totalPages
 }
-
-export function showLoading(elem) {
-  elem.innerHTML = `
-    <div class="flex justify-center items-center col-span-full py-8">
-      <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-opacity-50"></div>
-    </div>
-  `;
-}

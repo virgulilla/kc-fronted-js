@@ -1,16 +1,15 @@
 import { getAd } from './showAdModel.js'
-import { buildAdCard, buildNoAdAdvice, showLoading, flashErrorMessage, flashSuccessMessage } from './showAdView.js'
+import { buildAdCard, buildNoAdAdvice, flashErrorMessage, flashSuccessMessage } from './showAdView.js'
 import { getUser } from '../check-auth/checkAuthModel.js'
 
-const adContainer = document.getElementById('ad-card')
 const flashMessageElement = document.querySelector('#flash-message')
 
-export async function showAdController() {
+export async function showAdController(adContainer) {
   try {
-    flashSuccessMessage(flashMessageElement)    
-    showLoading(adContainer)
-    const user = await getUser()
-    
+    flashSuccessMessage(flashMessageElement)        
+    const event = new CustomEvent('load-ads-started')
+    adContainer.dispatchEvent(event)
+    const user = await getUser()    
     const params = new URLSearchParams(window.location.search)
     const adId = Number(params.get('id'))
     const ad = await getAd(adId)
@@ -21,8 +20,11 @@ export async function showAdController() {
       adContainer.innerHTML = buildNoAdAdvice()
     }
     
-  } catch (error) {
+  } catch (error) {    
     flashErrorMessage(adContainer)
+  } finally {
+    const event = new CustomEvent('load-ads-finished')
+    adContainer.dispatchEvent(event)
   }
 }
 

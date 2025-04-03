@@ -2,11 +2,23 @@ import { showAdsController } from "./show-ads/showAdsController.js"
 import { logoutOptionController } from "./check-auth/checkAuthController.js"
 import { deleteAdController } from "./delete-ad/deleteAdController.js"
 import { initSearch } from "./search-ads/searchAdsController.js"
+import { loaderController } from "./loader/loaderController.js"
 
 document.addEventListener('DOMContentLoaded', () => {  
-  logoutOptionController()
-  showAdsController()
-  initSearch()
+  const adsContainer = document.getElementById('ads-list')
+  const {toggle} = loaderController()  
+    
+  adsContainer.addEventListener('load-ads-started', () => {
+    toggle()
+  })
+
+  adsContainer.addEventListener('load-ads-finished', () => {
+    toggle()
+  })
+  
+  logoutOptionController()  
+  showAdsController(adsContainer)
+  initSearch()    
 
   document.addEventListener('click', (event) => {
     if (event.target.matches('.delete-ad')) {

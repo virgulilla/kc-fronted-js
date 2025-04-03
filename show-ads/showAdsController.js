@@ -4,19 +4,17 @@ import {
   buildNoAdsAdvice, 
   flashSuccessMessage, 
   flashErrorMessage, 
-  updatePagination, 
-  showLoading } from './showAdsView.js'
+  updatePagination } from './showAdsView.js'
 import { getUsserLogged } from '../check-auth/checkAuthController.js'
 
 const LIMIT = 10
 const flashMessageElement = document.querySelector('#flash-message')
 
-export async function showAdsController() {
-  try {
-    const adsContainer = document.getElementById('ads-list')    
+export async function showAdsController(adsContainer) {  
+  try {    
     flashSuccessMessage(flashMessageElement)
-    showLoading(adsContainer)
-    
+    const event = new CustomEvent('load-ads-started')
+    adsContainer.dispatchEvent(event)
     const params = new URLSearchParams(window.location.search)    
     const page = Number(params.get('page')) || 1
     const limit = Number(params.get('limit')) || LIMIT
@@ -37,7 +35,10 @@ export async function showAdsController() {
     }
     
   } catch (error) {
-    flashErrorMessage(flashMessageElement)    
+    flashErrorMessage(flashMessageElement)     
+  } finally {
+    const event = new CustomEvent('load-ads-finished')
+    adsContainer.dispatchEvent(event)
   }
 }
 

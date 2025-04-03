@@ -54,7 +54,11 @@
 
   <main class="flex-grow">    
     <div id="flash-message" class="hidden text-sm text-center p-2 rounded-md"></div>
-    <div id="ads-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4"></div>
+    <div class="loader hidden flex justify-center items-center col-span-full py-8">
+      <div class="animate-spin rounded-full h-10 w-10 border-t-4 border-blue-500 border-opacity-50"></div>
+    </div>
+    <div id="ads-list" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 p-4">      
+    </div>
     <div id="pagination" class="flex my-10 justify-center items-center gap-4">
       <button id="prev-page" class="px-4 py-2 text-white bg-emerald-500 rounded hover:bg-emerald-700 disabled:opacity-50">← Anterior</button>
       <button id="next-page" class="px-4 py-2 text-white bg-emerald-500 rounded hover:bg-emerald-700 disabled:opacity-50">Siguiente →</button>

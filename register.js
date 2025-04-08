@@ -1,15 +1,29 @@
 import { registerController } from "./register/registerController.js"
 import { initSearch } from "./search-ads/searchAdsController.js"
+import { loaderController } from "./loader/loaderController.js"
+import { notificationsController } from "./notifications/notificationsController.js"
 
 document.addEventListener('DOMContentLoaded', () => {    
-  initSearch()
-  
   const form = document.querySelector('#register-form')
-  registerController(false)
-  form.addEventListener('submit', async (e) => {
-      e.preventDefault()
-      registerController(form)
+  const notifications = document.querySelector('.notifications')
+  const { showNotification } = notificationsController(notifications)
+  const {toggle} = loaderController()  
+
+  form.addEventListener('register-error', (event) => {
+    const { type, message } = event.detail
+    showNotification(type, message)
   })
+  
+  form.addEventListener('register-started', () => {
+    toggle()
+  })
+
+  form.addEventListener('register-finished', () => {
+    toggle()
+  })
+
+  initSearch()
+  registerController(form)
 
   const mobileMenuButton = document.querySelector('#mobile-menu-button')  
   mobileMenuButton.addEventListener('click', () => {

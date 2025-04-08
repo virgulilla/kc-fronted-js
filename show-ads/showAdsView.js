@@ -35,13 +35,6 @@ export const flashSuccessMessage = (elem) => {
   sessionStorage.removeItem('successMessage')
 }
 
-export const flashErrorMessage = (elem) => {  
-  elem.textContent = 'Error al cargar los anuncios.'
-  elem.classList.remove('hidden')  
-  elem.classList.remove('bg-emerald-100', 'text-emerald-700')
-  elem.classList.add('bg-red-100', 'text-red-700')
-}
-
 export const updatePagination = (page, totalPages) => {
   const prevBtn = document.querySelector('#prev-page')
   const nextBtn = document.querySelector('#next-page')

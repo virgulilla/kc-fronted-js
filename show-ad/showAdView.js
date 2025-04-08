@@ -43,13 +43,6 @@ export const flashSuccessMessage = (elem) => {
   sessionStorage.removeItem('successMessage')
 }
 
-export const flashErrorMessage = (elem) => {  
-  elem.textContent = 'Error al cargar el anuncio.'
-  elem.classList.remove('hidden')  
-  elem.classList.remove('bg-emerald-100', 'text-emerald-700')
-  elem.classList.add('bg-red-100', 'text-red-700')
-}
-
 export const buildNoAdAdvice = () => {
   return '<p class="text-gray-500 text-center col-span-full">El anuncio solicitado no está disponible.</p>'   
 }

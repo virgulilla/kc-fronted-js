@@ -1,18 +1,11 @@
 import { getAds } from './showAdsModel.js'
-import { 
-  buildAd, 
-  buildNoAdsAdvice, 
-  flashSuccessMessage, 
-  flashErrorMessage, 
-  updatePagination } from './showAdsView.js'
+import { buildAd, buildNoAdsAdvice, updatePagination } from './showAdsView.js'
 import { getUsserLogged } from '../check-auth/checkAuthController.js'
 
 const LIMIT = 10
-const flashMessageElement = document.querySelector('#flash-message')
 
 export async function showAdsController(adsContainer) {  
-  try {    
-    flashSuccessMessage(flashMessageElement)
+  try {        
     const event = new CustomEvent('load-ads-started')
     adsContainer.dispatchEvent(event)
     const params = new URLSearchParams(window.location.search)    
@@ -35,7 +28,13 @@ export async function showAdsController(adsContainer) {
     }
     
   } catch (error) {
-    flashErrorMessage(flashMessageElement)     
+    const event = new CustomEvent('load-ads-error', {
+      detail: {
+        type: 'error',
+        message: 'Ha habido un error al cargar los anuncios.'
+      }
+    })
+    adsContainer.dispatchEvent(event)     
   } finally {
     const event = new CustomEvent('load-ads-finished')
     adsContainer.dispatchEvent(event)

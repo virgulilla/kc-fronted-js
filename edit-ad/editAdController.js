@@ -1,20 +1,17 @@
 import { editAd } from './editAdModel.js'
 import { getToken, getUser } from "../check-auth/checkAuthModel.js"
-import { buildMessageError, buildAd } from "./editAdView.js"
 import { getAd } from '../show-ad/showAdModel.js'
-
-const newMessageElemeent = document.querySelector('#edit-message')
 
 export function editAdController(form, adId, isEdit) {
   const formData = new FormData(form)
   if (isEdit) {
-    updateAd(formData, adId)
+    updateAd(form, formData, adId)
   } else {    
-    editFormController(adId)
+    editFormController(form, adId)
   }      
 }
 
-async function updateAd(formData, adId) {
+async function updateAd(form, formData, adId) {
   try {
     const token = getToken()
     const user = await getUser()    
@@ -31,15 +28,36 @@ async function updateAd(formData, adId) {
     sessionStorage.setItem('successMessage', 'Anuncio editado correctamente')
     window.location.href= `/card.html?id=${adId}`    
   } catch (error) {
-    buildMessageError(newMessageElemeent, error.message)
+    const event = new CustomEvent('edit-ad-error', {
+      bubbles: true,
+      detail: {
+        type: 'error',
+        message: error.message
+      }
+    })
+    form.dispatchEvent(event) 
   }
 }
 
-async function editFormController(adId) {
+async function editFormController(form, adId) {
   try {
     const ad = await getAd(adId)
-    buildAd(ad)
+    document.querySelector('#name').value = ad.name
+    document.querySelector('#description').value = ad.description
+    document.querySelector('#price').value = ad.price
+    document.querySelector('#photo').value = ad.photo || ''
+    const typeSelect = document.querySelector('#type')
+    Array.from(typeSelect.options).forEach(option => {
+        option.selected = option.value === ad.type
+    })
   } catch (error) {
-    buildMessageError(newMessageElemeent, error.message)
+    const event = new CustomEvent('edit-ad-error', {
+      bubbles: true,
+      detail: {
+        type: 'error',
+        message: error.message
+      }
+    })
+    form.dispatchEvent(event) 
   }
 }

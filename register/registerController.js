@@ -1,22 +1,33 @@
 import { doRegister } from "./registerModel.js"
 import { isLogged } from "../check-auth/checkAuthController.js"
-import { buildMessageError } from "./registerView.js"
-
-const registerMessageElemeent = document.querySelector('#register-message')
 
 export async function registerController(form) {
-    try {
-        if (isLogged()) {
-            window.location.href = '/'    
-        }
-        if (!form) {
-            return
-        }
-        const formData = new FormData(form)
-        await doRegister(formData.get('username'), formData.get('password'))        
-        sessionStorage.setItem('successMessage', 'Usuario registrado correctamente. Por favor, inicia sesion')
-        window.location.href= '/'
-    } catch (error) {
-        buildMessageError(registerMessageElemeent, error.message)
-    }    
+    if (isLogged()) {
+        window.location.href = '/'    
+    }
+    
+    form.addEventListener('submit', async (event) => {        
+        try {
+            event.preventDefault()
+            const customRegisterEvent = new CustomEvent('register-started')
+            form.dispatchEvent(customRegisterEvent)
+            const formData = new FormData(form)
+            await doRegister(formData.get('username'), formData.get('password'))        
+            sessionStorage.setItem('successMessage', 'Usuario registrado correctamente. Por favor, inicia sesion')
+            window.location.href= '/'
+        } catch (error) {
+            const customEvent = new CustomEvent('register-error', {
+                detail: {
+                  type: 'error',
+                  message: error.message
+                }
+              })
+              form.dispatchEvent(customEvent) 
+        } finally {
+            const customRegisterEvent = new CustomEvent('register-finished')
+            form.dispatchEvent(customRegisterEvent)
+        }  
+    })
+
+      
 }

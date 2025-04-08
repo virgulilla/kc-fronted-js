@@ -3,10 +3,13 @@ import { logoutOptionController } from "./check-auth/checkAuthController.js"
 import { deleteAdController } from "./delete-ad/deleteAdController.js"
 import { initSearch } from "./search-ads/searchAdsController.js"
 import { loaderController } from "./loader/loaderController.js"
+import { notificationsController } from "./notifications/notificationsController.js"
 
 document.addEventListener('DOMContentLoaded', () => {  
   const adsContainer = document.getElementById('ads-list')
+  const notifications = document.querySelector('.notifications')
   const {toggle} = loaderController()  
+  const { showNotification } = notificationsController(notifications)
     
   adsContainer.addEventListener('load-ads-started', () => {
     toggle()
@@ -15,9 +18,20 @@ document.addEventListener('DOMContentLoaded', () => {
   adsContainer.addEventListener('load-ads-finished', () => {
     toggle()
   })
-  
+
+  adsContainer.addEventListener('load-ads-error', (event) => {
+    const { type, message } = event.detail
+    showNotification(type, message)
+  })
+
+  adsContainer.addEventListener('delete-ad-error', (event) => {
+    const { type, message } = event.detail
+    notificationsController(type, message)
+  })
+
   logoutOptionController()  
   showAdsController(adsContainer)
+  notificationsController(notifications)
   initSearch()    
 
   document.addEventListener('click', (event) => {
@@ -27,7 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
       if (!confirmed) return
 
       const adId = event.target.dataset.id
-      deleteAdController(adId)
+      deleteAdController(adId, event.target)
     }
 
     if (event.target.matches('#prev-page')) {

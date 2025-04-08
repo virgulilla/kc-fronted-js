@@ -1,8 +1,5 @@
 import { newAd } from './newAdModel.js'
 import { getToken, getUser } from "../check-auth/checkAuthModel.js"
-import { buildMessageError } from "./newAdView.js"
-
-const newMessageElemeent = document.querySelector('#new-message')
 
 export async function newAdController(form) {
   try {      
@@ -22,6 +19,13 @@ export async function newAdController(form) {
     sessionStorage.setItem('successMessage', 'Anuncio creado correctamente')
     window.location.href= '/'    
   } catch (error) {
-    buildMessageError(newMessageElemeent, error.message)
+    const event = new CustomEvent('new-ad-error', {
+      bubbles: true,
+      detail: {
+        type: 'error',
+        message: error.message
+      }
+    })
+    form.dispatchEvent(event) 
   }
 }

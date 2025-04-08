@@ -2,13 +2,17 @@ import { editAd } from './editAdModel.js'
 import { getToken, getUser } from "../check-auth/checkAuthModel.js"
 import { getAd } from '../show-ad/showAdModel.js'
 
-export function editAdController(form, adId, isEdit) {
-  const formData = new FormData(form)
-  if (isEdit) {
-    updateAd(form, formData, adId)
-  } else {    
-    editFormController(form, adId)
-  }      
+export function editAdController(form) {
+  const params = new URLSearchParams(window.location.search)  
+  const adId = Number(params.get('id'))
+
+  editFormController(form, adId)
+
+  form.addEventListener('submit', (event) => {
+    event.preventDefault()
+    const formData = new FormData(form)
+    updateAd(form, formData, adId)    
+  })
 }
 
 async function updateAd(form, formData, adId) {

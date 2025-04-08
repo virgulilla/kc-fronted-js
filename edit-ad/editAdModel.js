@@ -1,7 +1,7 @@
 export async function editAd(token, adId, data) {
   try {
     const {userId, name, description, price, type, photo} = data
-    const response = await fetch(`http://127.0.0.1:8000/api/ads/${adId}`, {
+    const response = await fetch(`http://localhost:8000/api/ads/${adId}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

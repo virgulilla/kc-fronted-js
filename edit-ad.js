@@ -4,9 +4,7 @@ import { notificationsController } from "./notifications/notificationsController
 
 document.addEventListener('DOMContentLoaded', () => {    
   initSearch()  
-  const form = document.querySelector('#edit-ad-form')
-  const params = new URLSearchParams(window.location.search)
-  const adId = Number(params.get('id'))
+  const form = document.querySelector('#edit-ad-form')  
   const notifications = document.querySelector('.notifications')
 
   const { showNotification } = notificationsController(notifications) 
@@ -16,14 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
     showNotification(type, message)
   })
   
-  editAdController(form, adId, false)
-
-  form.addEventListener('submit', (event) => {
-    event.preventDefault()    
-    if (!adId) return
-
-    editAdController(form, adId, true)
-  })
+  editAdController(form)
 
   const mobileMenuButton = document.querySelector('#mobile-menu-button')  
   mobileMenuButton.addEventListener('click', () => {

@@ -1,6 +1,6 @@
 export async function newAd(token, data) {
     const {userId, name, description, price, type, photo} = data
-    const response = await fetch('http://127.0.0.1:8000/api/ads', {
+    const response = await fetch('http://localhost:8000/api/ads', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

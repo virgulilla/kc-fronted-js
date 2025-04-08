@@ -13,12 +13,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const { type, message } = event.detail
     showNotification(type, message)
   })
+
+  form.addEventListener('register-success', (event) => {
+    const { type, message } = event.detail
+    showNotification(type, message)
+  })
   
-  form.addEventListener('register-started', () => {
+  form.addEventListener('load-register-started', () => {
     toggle()
   })
 
-  form.addEventListener('register-finished', () => {
+  form.addEventListener('load-register-finished', () => {
     toggle()
   })
 

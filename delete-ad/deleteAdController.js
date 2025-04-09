@@ -1,12 +1,22 @@
 import { deletetAd } from './deleteAdModel.js'
-import { getToken } from "../check-auth/checkAuthModel.js"
 
 export async function deleteAdController(adId, dispatchTarget) {
-  try {      
-    const token = getToken()
-    await deletetAd(adId, token)
-    window.location.href= '/'    
-    sessionStorage.setItem('successMessage', 'Anuncio eliminado correctamente')
+  try {
+    const event = new CustomEvent('delete-ad-started', {bubbles: true})
+    dispatchTarget.dispatchEvent(event)
+    await deletetAd(adId)
+    const deleteEvent = new CustomEvent('delete-ad-success', {
+      bubbles: true,
+      detail: {
+        type: 'success',
+        message: 'Anuncio eliminado correctamente'
+      }
+    })
+    dispatchTarget.dispatchEvent(deleteEvent)
+    setTimeout(() => {
+      window.location.href= '/'      
+    }, 3000)
+    
   } catch (error) {
     const event = new CustomEvent('delete-ad-error', {
       bubbles: true,
@@ -16,5 +26,8 @@ export async function deleteAdController(adId, dispatchTarget) {
       }
     })
     dispatchTarget.dispatchEvent(event) 
+  } finally {
+    const event = new CustomEvent('delete-ad-finished', {bubbles: true})
+    dispatchTarget.dispatchEvent(event)
   }
 }

@@ -19,6 +19,14 @@ document.addEventListener('DOMContentLoaded', () => {
     loader()
   })
 
+  adsContainer.addEventListener('delete-ad-started', () => {
+    loader()
+  })
+
+  adsContainer.addEventListener('delete-ad-finished', () => {
+    loader()
+  })
+
   adsContainer.addEventListener('load-ads-error', (event) => {
     const { type, message } = event.detail
     showNotification(type, message)
@@ -26,7 +34,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
   adsContainer.addEventListener('delete-ad-error', (event) => {
     const { type, message } = event.detail
-    notificationsController(type, message)
+    showNotification(type, message)
+  })
+  adsContainer.addEventListener('delete-ad-success', (event) => {
+    const { type, message } = event.detail
+    showNotification(type, message)
   })
 
   logoutOptionController()  

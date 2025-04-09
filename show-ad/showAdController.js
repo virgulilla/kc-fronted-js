@@ -1,21 +1,17 @@
 import { getAd } from './showAdModel.js'
-import { buildAdCard, buildNoAdAdvice } from './showAdView.js'
-import { getUser } from '../check-auth/checkAuthModel.js'
+import { buildAdCard } from './showAdView.js'
+import { decodeToken } from '../utils/decodeToken.js'
 
 export async function showAdController(adContainer) {
   try {        
     const event = new CustomEvent('load-ad-started')
     adContainer.dispatchEvent(event)
-    const user = await getUser()    
+    const user = decodeToken()   
     const params = new URLSearchParams(window.location.search)
     const adId = Number(params.get('id'))
     const ad = await getAd(adId)
-    adContainer.innerHTML = ''    
-    if (ad) {
-      drawAd(ad, adContainer, user)      
-    } else {
-      adContainer.innerHTML = buildNoAdAdvice()
-    }
+
+    drawAd(ad, adContainer, user)
     
   } catch (error) {    
     const event = new CustomEvent('load-ad-error', {
@@ -25,6 +21,9 @@ export async function showAdController(adContainer) {
       }
     })
     adContainer.dispatchEvent(event) 
+    setTimeout(() => {
+      window.location.href = '/'
+    }, 3000)
   } finally {
     const event = new CustomEvent('load-ad-finished')
     adContainer.dispatchEvent(event)

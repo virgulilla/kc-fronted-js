@@ -1,6 +1,6 @@
 export const buildAdCard = (adElement, ad, user) => {
   adElement.className = 'bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow'  
-  const editIcon = user?.id === ad.userId
+  const editIcon = user && user.userId === ad.userId
     ? `<a href="edit-ad.html?id=${ad.id}" title="Editar">
          <!-- Icono de lápiz SVG -->
          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-500 hover:text-emerald-800" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -31,8 +31,4 @@ export const buildAdCard = (adElement, ad, user) => {
         </div>
       </article>
     `
-}
-
-export const buildNoAdAdvice = () => {
-  return '<p class="text-gray-500 text-center col-span-full">El anuncio solicitado no está disponible.</p>'   
 }

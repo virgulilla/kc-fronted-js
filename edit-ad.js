@@ -2,12 +2,19 @@ import { editAdController } from "./edit-ad/editAdController.js"
 import { initSearch } from "./search-ads/searchAdsController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
 
-document.addEventListener('DOMContentLoaded', () => {    
-  initSearch()  
+document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#edit-ad-form')  
   const notifications = document.querySelector('.notifications')
-
   const { showNotification } = notificationsController(notifications) 
+  const token = localStorage.getItem('token')
+  
+  if (!token) {
+    window.location = '/login.html'
+  }
+  
+  
+  initSearch()  
+  
 
   form.addEventListener('edit-ad-error', (event) => {
     const { type, message } = event.detail

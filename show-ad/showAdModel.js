@@ -1,9 +1,9 @@
 export async function getAd(adId) {
-  try {
-    const response = await fetch(`http://localhost:8000/api/ads/${adId}`)
-    return await response.json()
-  } catch (error) {
-    throw new Error('Error al cargar el anuncio')
-  } 
-    
+  const response = await fetch(`http://localhost:8000/api/ads/${adId}`)
+
+  if (!response.ok) {
+    throw new Error('No se encuentra el anuncio')
+  }
+
+  return await response.json()    
 }

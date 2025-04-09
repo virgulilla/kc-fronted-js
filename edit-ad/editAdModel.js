@@ -1,6 +1,7 @@
-export async function editAd(token, adId, data) {
+export async function editAd(adId, data) {
   try {
-    const {userId, name, description, price, type, photo} = data
+    const {name, description, price, type, photo} = data
+    const token = localStorage.getItem('token')
     const response = await fetch(`http://localhost:8000/api/ads/${adId}`, {
       method: 'PUT',
       headers: {
@@ -8,7 +9,6 @@ export async function editAd(token, adId, data) {
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        userId,
         name,
         description,
         price,

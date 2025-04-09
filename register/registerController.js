@@ -1,5 +1,6 @@
 import { doRegister } from "./registerModel.js"
 import { isLogged } from "../check-auth/checkAuthController.js"
+import { REGEXP } from "../utils/constants.js"
 
 export async function registerController(form) {
     if (isLogged()) {
@@ -63,9 +64,7 @@ export async function registerController(form) {
         const password = formData.get('password')
         const confirmPassword = formData.get('confirm-password')
         
-        const emailRegExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
-        
-        if (!emailRegExp.test(email)) {
+        if (!REGEXP.mail.test(email)) {
             errors.push('El formato del email es incorrecto')
         }
         

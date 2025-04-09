@@ -7,7 +7,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#register-form')
   const notifications = document.querySelector('.notifications')
   const { showNotification } = notificationsController(notifications)
-  const {toggle} = loaderController()  
+  const {loader} = loaderController()  
 
   form.addEventListener('register-error', (event) => {
     const { type, message } = event.detail
@@ -20,11 +20,11 @@ document.addEventListener('DOMContentLoaded', () => {
   })
   
   form.addEventListener('load-register-started', () => {
-    toggle()
+    loader()
   })
 
   form.addEventListener('load-register-finished', () => {
-    toggle()
+    loader()
   })
 
   initSearch()

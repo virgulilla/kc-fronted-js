@@ -1,5 +1,6 @@
-export async function newAd(token, data) {
-    const {userId, name, description, price, type, photo} = data
+export async function newAd(data) {
+    const token = localStorage.getItem('token')
+    const {name, description, price, type, photo} = data
     const response = await fetch('http://localhost:8000/api/ads', {
       method: 'POST',
       headers: {
@@ -7,7 +8,6 @@ export async function newAd(token, data) {
         'Authorization': `Bearer ${token}`
       },
       body: JSON.stringify({
-        userId,
         name,
         description,
         price,
@@ -20,6 +20,4 @@ export async function newAd(token, data) {
     if (!response.ok) {
       throw new Error('Error creando el anuncio')
     }
-    
-    return await response.json()
  }

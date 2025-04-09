@@ -7,19 +7,24 @@ document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#login-form')
   const notifications = document.querySelector('.notifications')
   const { showNotification } = notificationsController(notifications)
-   const {toggle} = loaderController()  
+   const {loader} = loaderController()  
 
   form.addEventListener('login-error', (event) => {
     const { type, message } = event.detail
     showNotification(type, message)
   })
 
+  form.addEventListener('login-success', (event) => {
+    const { type, message } = event.detail
+    showNotification(type, message)
+  })
+
   form.addEventListener('login-started', () => {
-    toggle()
+    loader()
   })
 
   form.addEventListener('login-finished', () => {
-    toggle()
+    loader()
   })
 
   initSearch()

@@ -8,15 +8,15 @@ import { notificationsController } from "./notifications/notificationsController
 document.addEventListener('DOMContentLoaded', () => {  
   const adsContainer = document.getElementById('ads-list')
   const notifications = document.querySelector('.notifications')
-  const {toggle} = loaderController()  
+  const {loader} = loaderController()  
   const { showNotification } = notificationsController(notifications)
     
   adsContainer.addEventListener('load-ads-started', () => {
-    toggle()
+    loader()
   })
 
   adsContainer.addEventListener('load-ads-finished', () => {
-    toggle()
+    loader()
   })
 
   adsContainer.addEventListener('load-ads-error', (event) => {

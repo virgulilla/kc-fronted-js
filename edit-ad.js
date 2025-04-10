@@ -1,5 +1,5 @@
 import { editAdController } from "./edit-ad/editAdController.js"
-import { initSearch } from "./search-ads/searchAdsController.js"
+import { searchController } from "./search/searchAdsController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
 import { loaderController } from "./loader/loaderController.js"
 import { menuDesktopController } from "./menu/menDesktopuController.js"
@@ -14,6 +14,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const { loader } = loaderController()
   const navDesktop = document.querySelector('#nav-desktop')
   const navMobile = document.querySelector('#nav-mobile')
+  const search = document.querySelector('#search')
   
   if (!token) {
     window.location = '/login.html'
@@ -39,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
   
   menuDesktopController(navDesktop)  
   menuMobileController(navMobile)
-  initSearch() 
+  searchController(search) 
   editAdController(form)
 
   const logout = document.querySelector('#logout')

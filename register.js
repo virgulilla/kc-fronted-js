@@ -1,5 +1,5 @@
 import { registerController } from "./register/registerController.js"
-import { initSearch } from "./search-ads/searchAdsController.js"
+import { searchController } from "./search/searchAdsController.js"
 import { loaderController } from "./loader/loaderController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
 import { menuDesktopController } from "./menu/menDesktopuController.js"
@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const { showNotification } = notificationsController(notifications)
   const {loader} = loaderController()
   const navDesktop = document.querySelector('#nav-desktop')
-  const navMobile = document.querySelector('#nav-mobile')  
+  const navMobile = document.querySelector('#nav-mobile')
+  const search = document.querySelector('#search')
 
   form.addEventListener('register-error', (event) => {
     const { type, message } = event.detail
@@ -34,7 +35,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   menuDesktopController(navDesktop)  
   menuMobileController(navMobile)
-  initSearch()
+  searchController(search)
   registerController(form)
 
   const logout = document.querySelector('#logout')

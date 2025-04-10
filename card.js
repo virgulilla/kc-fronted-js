@@ -1,7 +1,7 @@
 import { showAdController } from "./show-ad/showAdController.js"
 import { menuDesktopController } from "./menu/menDesktopuController.js"
 import { menuMobileController } from "./menu/menuMobileController.js"
-import { initSearch } from "./search-ads/searchAdsController.js"
+import { searchController } from "./search/searchAdsController.js"
 import { loaderController } from "./loader/loaderController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
 import { logoutController } from "./logout/logoutController.js"
@@ -12,7 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const navDesktop = document.querySelector('#nav-desktop')
   const navMobile = document.querySelector('#nav-mobile')
   const {loader} = loaderController()
-  const { showNotification } = notificationsController(notifications)  
+  const { showNotification } = notificationsController(notifications)
+  const search = document.querySelector('#search')
       
   adContainer.addEventListener('load-ad-started', () => {
     loader()
@@ -32,7 +33,7 @@ document.addEventListener('DOMContentLoaded', () => {
   menuDesktopController(navDesktop)
   showAdController(adContainer)
   notificationsController(notifications)
-  initSearch()
+  searchController(search)
 
   const logout = document.querySelector('#logout')
   if (logout) {

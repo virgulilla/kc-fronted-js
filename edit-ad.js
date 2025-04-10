@@ -2,6 +2,9 @@ import { editAdController } from "./edit-ad/editAdController.js"
 import { initSearch } from "./search-ads/searchAdsController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
 import { loaderController } from "./loader/loaderController.js"
+import { menuDesktopController } from "./menu/menDesktopuController.js"
+import { menuMobileController } from "./menu/menuMobileController.js"
+import { logoutController } from "./logout/logoutController.js"
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#edit-ad-form')  
@@ -9,6 +12,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const { showNotification } = notificationsController(notifications) 
   const token = localStorage.getItem('token')
   const { loader } = loaderController()
+  const navDesktop = document.querySelector('#nav-desktop')
+  const navMobile = document.querySelector('#nav-mobile')
   
   if (!token) {
     window.location = '/login.html'
@@ -32,8 +37,15 @@ document.addEventListener('DOMContentLoaded', () => {
     showNotification(type, message)
   })  
   
+  menuDesktopController(navDesktop)  
+  menuMobileController(navMobile)
   initSearch() 
   editAdController(form)
+
+  const logout = document.querySelector('#logout')
+  if (logout) {
+    logoutController(logout)
+  }
 
   const mobileMenuButton = document.querySelector('#mobile-menu-button')  
   mobileMenuButton.addEventListener('click', () => {

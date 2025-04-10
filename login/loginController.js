@@ -1,12 +1,12 @@
 import { doLogin } from "./loginModel.js"
-import { isLogged } from "../check-auth/checkAuthController.js"
 import { REGEXP } from "../utils/constants.js"
 
 export async function loginController(form) {
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault()
-        if (isLogged()) {
+        const token = localStorage.getItem('token')
+        if (token) {
             window.location.href = '/'    
         }
 

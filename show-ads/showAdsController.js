@@ -1,6 +1,6 @@
 import { getAds } from './showAdsModel.js'
 import { buildAd, buildNoAdsAdvice, updatePagination } from './showAdsView.js'
-import { decodeToken } from '../utils/decodeToken.js'
+import { getUser } from '../utils/decodeToken.js'
 
 const LIMIT = 10
 
@@ -39,17 +39,18 @@ export async function showAdsController(adsContainer) {
     const event = new CustomEvent('load-ads-finished')
     adsContainer.dispatchEvent(event)
   }
-}
 
-async function drawAds(ads, adsContainer, page, totalPages) {    
-  const user = decodeToken()
+  async function drawAds(ads, adsContainer, page, totalPages) {    
+    const user = getUser()
+    
+    for (const ad of ads) {
+      const showDeleteButton = user && ad.userId === user.userId
+      const adElement = document.createElement('div')    
+      adElement.innerHTML = buildAd(adElement, ad, showDeleteButton)
+      adsContainer.appendChild(adElement)
+    }
   
-  for (const ad of ads) {
-    const showDeleteButton = user && ad.userId === user.userId
-    const adElement = document.createElement('div')    
-    adElement.innerHTML = buildAd(adElement, ad, showDeleteButton)
-    adsContainer.appendChild(adElement)
+    updatePagination(page, totalPages)
   }
-
-  updatePagination(page, totalPages)
+  
 }

@@ -5,7 +5,7 @@ export async function loginController(form) {
 
     form.addEventListener('submit', async (event) => {
         event.preventDefault()
-        const token = localStorage.getItem('token')
+        const token = !!localStorage.getItem('token')
         if (token) {
             window.location.href = '/'    
         }

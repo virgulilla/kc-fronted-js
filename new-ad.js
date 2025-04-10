@@ -4,10 +4,9 @@ import { notificationsController } from "./notifications/notificationsController
 import { loaderController } from "./loader/loaderController.js"
 import { menuDesktopController } from "./menu/menDesktopuController.js"
 import { menuMobileController } from "./menu/menuMobileController.js"
-import { logoutController } from "./logout/logoutController.js"
 
 document.addEventListener('DOMContentLoaded', () => {    
-  const token = localStorage.getItem('token')
+  const token = !!localStorage.getItem('token')
   if (!token) {
     window.location = '/login.html'
   }
@@ -42,11 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
   menuMobileController(navMobile)
   searchController(search)
   newAdController(form)
-
-  const logout = document.querySelector('#logout')
-  if (logout) {
-    logoutController(logout)
-  }
 
   const mobileMenuButton = document.querySelector('#mobile-menu-button')  
   mobileMenuButton.addEventListener('click', () => {

@@ -1,6 +1,6 @@
 import { editAd } from './editAdModel.js'
 import { getAd } from '../show-ad/showAdModel.js'
-import { decodeToken } from '../utils/decodeToken.js'
+import { getUser } from '../utils/decodeToken.js'
 
 export async function editAdController(form) {
   try {
@@ -9,7 +9,7 @@ export async function editAdController(form) {
     const params = new URLSearchParams(window.location.search)  
     const adId = Number(params.get('id'))
     const ad = await getAd(adId)
-    const user = decodeToken()
+    const user = getUser()
 
     if (!user || ad.userId !== user.userId) {
       throw new Error('No tienes permiso para editar este anuncio')

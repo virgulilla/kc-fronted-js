@@ -1,12 +1,12 @@
 import { getAd } from './showAdModel.js'
 import { buildAdCard } from './showAdView.js'
-import { decodeToken } from '../utils/decodeToken.js'
+import { getUser } from '../utils/decodeToken.js'
 
 export async function showAdController(adContainer) {
   try {        
     const event = new CustomEvent('load-ad-started')
     adContainer.dispatchEvent(event)
-    const user = decodeToken()   
+    const user = getUser()   
     const params = new URLSearchParams(window.location.search)
     const adId = Number(params.get('id'))
     const ad = await getAd(adId)

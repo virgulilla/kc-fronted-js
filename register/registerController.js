@@ -2,7 +2,7 @@ import { doRegister } from "./registerModel.js"
 import { REGEXP } from "../utils/constants.js"
 
 export async function registerController(form) {
-    const token = localStorage.getItem('token')
+    const token = !!localStorage.getItem('token')
     if (token) {
         window.location.href = '/'    
     }

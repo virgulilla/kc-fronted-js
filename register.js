@@ -4,7 +4,6 @@ import { loaderController } from "./loader/loaderController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
 import { menuDesktopController } from "./menu/menDesktopuController.js"
 import { menuMobileController } from "./menu/menuMobileController.js"
-import { logoutController } from "./logout/logoutController.js"
 
 document.addEventListener('DOMContentLoaded', () => {    
   const form = document.querySelector('#register-form')
@@ -37,11 +36,6 @@ document.addEventListener('DOMContentLoaded', () => {
   menuMobileController(navMobile)
   searchController(search)
   registerController(form)
-
-  const logout = document.querySelector('#logout')
-  if (logout) {
-    logoutController(logout)
-  }
 
   const mobileMenuButton = document.querySelector('#mobile-menu-button')  
   mobileMenuButton.addEventListener('click', () => {

@@ -5,7 +5,6 @@ import { deleteAdController } from "./delete-ad/deleteAdController.js"
 import { searchController } from "./search/searchAdsController.js"
 import { loaderController } from "./loader/loaderController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
-import { logoutController } from "./logout/logoutController.js"
 
 document.addEventListener('DOMContentLoaded', () => {  
   const adsContainer = document.getElementById('ads-list')
@@ -50,11 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
   menuMobileController(navMobile)  
   showAdsController(adsContainer)
   notificationsController(notifications)
-  searchController(search)
-  const logout = document.querySelector('#logout')
-  if (logout) {
-    logoutController(logout)
-  }  
+  searchController(search)    
 
   document.addEventListener('click', (event) => {
     if (event.target.matches('.delete-ad')) {

@@ -1,4 +1,4 @@
-export const decodeToken = () => {
+export const getUser = () => {
   const token = localStorage.getItem('token')
   if (!token) {
     return null

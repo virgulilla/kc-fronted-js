@@ -4,7 +4,6 @@ import { menuMobileController } from "./menu/menuMobileController.js"
 import { searchController } from "./search/searchAdsController.js"
 import { loaderController } from "./loader/loaderController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
-import { logoutController } from "./logout/logoutController.js"
 
 document.addEventListener('DOMContentLoaded', () => {
   const adContainer = document.getElementById('ad-card')
@@ -34,11 +33,6 @@ document.addEventListener('DOMContentLoaded', () => {
   showAdController(adContainer)
   notificationsController(notifications)
   searchController(search)
-
-  const logout = document.querySelector('#logout')
-  if (logout) {
-    logoutController(logout)
-  }
 
   const mobileMenuButton = document.querySelector('#mobile-menu-button')  
   mobileMenuButton.addEventListener('click', () => {

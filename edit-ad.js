@@ -4,13 +4,12 @@ import { notificationsController } from "./notifications/notificationsController
 import { loaderController } from "./loader/loaderController.js"
 import { menuDesktopController } from "./menu/menDesktopuController.js"
 import { menuMobileController } from "./menu/menuMobileController.js"
-import { logoutController } from "./logout/logoutController.js"
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#edit-ad-form')  
   const notifications = document.querySelector('.notifications')
   const { showNotification } = notificationsController(notifications) 
-  const token = localStorage.getItem('token')
+  const token = !!localStorage.getItem('token')
   const { loader } = loaderController()
   const navDesktop = document.querySelector('#nav-desktop')
   const navMobile = document.querySelector('#nav-mobile')
@@ -42,11 +41,6 @@ document.addEventListener('DOMContentLoaded', () => {
   menuMobileController(navMobile)
   searchController(search) 
   editAdController(form)
-
-  const logout = document.querySelector('#logout')
-  if (logout) {
-    logoutController(logout)
-  }
 
   const mobileMenuButton = document.querySelector('#mobile-menu-button')  
   mobileMenuButton.addEventListener('click', () => {

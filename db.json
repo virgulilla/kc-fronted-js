@@ -1,0 +1,168 @@
+{
+  "users": [
+    {
+      "name": "pepito",
+      "username": "user1@example.com",
+      "password": "$2b$10$sHCZZKWTAcLsvmVt5AJOxusZ3CdOyKNFjv.lsha4nuPi5/jG9mbG2",
+      "id": 1
+    },
+    {
+      "name": "jose",
+      "username": "user2@example.com",
+      "password": "$2b$10$sHCZZKWTAcLsvmVt5AJOxusZ3CdOyKNFjv.lsha4nuPi5/jG9mbG2",
+      "id": 2
+    }
+  ],
+  "ads": [
+    {
+      "name": "ajedrez con su tablero",
+      "description": "Contiene todas las piezas. En muy buen estado. Escucho ofertas",
+      "price": "20",
+      "type": "sell",
+      "photo": "https://cdn.pixabay.com/photo/2019/01/28/11/48/chess-3960184_1280.jpg",
+      "userId": 1,
+      "updatedAt": "2025-04-11T09:03:37.884Z",
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "name": "coche deportivo",
+      "description": "Tiene unos cuantos caballos",
+      "price": "150000",
+      "type": "sell",
+      "photo": "https://cdn.pixabay.com/photo/2020/09/06/07/37/car-5548242_1280.jpg",
+      "updatedAt": "2025-04-03T19:16:36.567Z",
+      "id": 2
+    },
+    {
+      "id": 3,
+      "userId": 1,
+      "name": "Cafetera Nespresso",
+      "description": "Incluye todos los accesorios originales.",
+      "price": 626.37,
+      "type": "sell",
+      "photo": "https://images.pexels.com/photos/414645/pexels-photo-414645.jpeg"
+    },
+    {
+      "id": 4,
+      "userId": 1,
+      "name": "Altavoz Bluetooth",
+      "description": "Producto en buen estado, apenas usado.",
+      "price": 532.63,
+      "type": "buy",
+      "photo": "https://images.pexels.com/photos/63703/pexels-photo-63703.jpeg"
+    },
+    {
+      "userId": 1,
+      "name": "Lapiz",
+      "description": "Compro lapiz y  a cambio regalo entradas de futbol",
+      "price": "200",
+      "type": "buy",
+      "photo": "https://media.istockphoto.com/id/471439549/es/foto/l%C3%A1piz.jpg?s=2048x2048&w=is&k=20&c=oNz0K9jfdXA_y4Fudrmd_rBMzP_lUaDV-YRiPVJ5gnA=",
+      "updatedAt": "2025-04-03T19:18:36.286Z",
+      "id": 5
+    },
+    {
+      "id": 6,
+      "userId": 2,
+      "name": "Teclado Mecánico",
+      "description": "Switches rojos. Ideal para gaming.",
+      "price": 85.5,
+      "type": "sell",
+      "photo": "https://images.pexels.com/photos/1714207/pexels-photo-1714207.jpeg"
+    },
+    {
+      "userId": 1,
+      "name": "Bicicleta de Montaña 2",
+      "description": "Cuadro de aluminio, 21 velocidades.",
+      "price": "450",
+      "type": "sell",
+      "photo": "https://images.pexels.com/photos/90454/pexels-photo-90454.jpeg",
+      "updatedAt": "2025-04-03T17:16:08.768Z",
+      "id": 7
+    },
+    {
+      "id": 8,
+      "userId": 2,
+      "name": "Cámara Réflex Canon",
+      "description": "Incluye dos lentes y funda.",
+      "price": 600,
+      "type": "sell",
+      "photo": "https://images.pexels.com/photos/1366927/pexels-photo-1366927.jpeg"
+    },
+    {
+      "id": 9,
+      "userId": 1,
+      "name": "iPhone 12",
+      "description": "Color negro, 128GB. Buen estado.",
+      "price": 550,
+      "type": "buy",
+      "photo": "https://images.pexels.com/photos/12794493/pexels-photo-12794493.jpeg"
+    },
+    {
+      "id": 10,
+      "userId": 2,
+      "name": "Silla Ergonómica",
+      "description": "Respaldo ajustable. Ideal para home office.",
+      "price": 130,
+      "type": "sell",
+      "photo": "https://images.pexels.com/photos/245208/pexels-photo-245208.jpeg"
+    },
+    {
+      "id": 11,
+      "userId": 1,
+      "name": "iPad Pro",
+      "description": "Pantalla 11”, incluye Apple Pencil.",
+      "price": 799,
+      "type": "buy",
+      "photo": "https://images.pexels.com/photos/5082568/pexels-photo-5082568.jpeg"
+    },
+    {
+      "id": 12,
+      "userId": 2,
+      "name": "Zapatillas Deportivas Nike",
+      "description": "Nuevas, talla 42.",
+      "price": 90,
+      "type": "sell",
+      "photo": "https://images.pexels.com/photos/2529148/pexels-photo-2529148.jpeg"
+    },
+    {
+      "id": 13,
+      "userId": 1,
+      "name": "Guitarra Acústica",
+      "description": "Madera maciza, excelente sonido.",
+      "price": 250,
+      "type": "sell",
+      "photo": "https://images.pexels.com/photos/210764/pexels-photo-210764.jpeg"
+    },
+    {
+      "id": 14,
+      "userId": 2,
+      "name": "Monitor 27'' 4K",
+      "description": "Alta definición, ideal para diseño.",
+      "price": 310,
+      "type": "buy",
+      "photo": "https://images.pexels.com/photos/374074/pexels-photo-374074.jpeg"
+    },
+    {
+      "name": "sdfg",
+      "description": "sdfg",
+      "price": "23",
+      "type": "buy",
+      "photo": "https://cdn.pixabay.com/photo/2020/09/06/07/37/car-5548242_1280.jpg",
+      "userId": 1,
+      "updatedAt": "2025-04-09T11:28:19.525Z",
+      "id": 24
+    },
+    {
+      "name": "para borrar 2",
+      "description": "adf",
+      "price": "23",
+      "type": "buy",
+      "photo": "https://cdn.pixabay.com/photo/2020/09/06/07/37/car-5548242_1280.jpg",
+      "userId": 2,
+      "updatedAt": "2025-04-11T07:17:17.837Z",
+      "id": 25
+    }
+  ]
+}

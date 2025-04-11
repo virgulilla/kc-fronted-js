@@ -1,6 +1,5 @@
 import { getAds } from './showAdsModel.js'
 import { buildAd, buildNoAdsAdvice, updatePagination } from './showAdsView.js'
-import { getUser } from '../utils/decodeToken.js'
 
 const LIMIT = 10
 
@@ -22,7 +21,17 @@ export async function showAdsController(adsContainer) {
     adsContainer.innerHTML = ''
 
     if (ads.length > 0) {
-      drawAds(ads, adsContainer, page, totalPages)      
+      drawAds(ads, adsContainer, page, totalPages)
+      document.addEventListener('click', (event) => {
+
+        if (event.target.matches('#prev-page')) {
+          changePage(-1)
+        }
+    
+        if (event.target.matches('#next-page')) {
+          changePage(1)
+        }
+      })        
     } else {
       adsContainer.innerHTML = buildNoAdsAdvice()
     }
@@ -41,16 +50,23 @@ export async function showAdsController(adsContainer) {
   }
 
   async function drawAds(ads, adsContainer, page, totalPages) {    
-    const user = getUser()
-    
     for (const ad of ads) {
-      const showDeleteButton = user && ad.userId === user.userId
       const adElement = document.createElement('div')    
-      adElement.innerHTML = buildAd(adElement, ad, showDeleteButton)
+      adElement.innerHTML = buildAd(adElement, ad)
       adsContainer.appendChild(adElement)
     }
   
     updatePagination(page, totalPages)
+  }
+
+  
+  const changePage = (num) => {
+    const params = new URLSearchParams(window.location.search)
+    const currentPage = parseInt(params.get('page')) || 1
+    const newPage = Math.max(1, currentPage + num)
+
+    params.set('page', newPage);
+    window.location.search = params.toString()
   }
   
 }

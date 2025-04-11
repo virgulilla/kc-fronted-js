@@ -1,21 +1,19 @@
-import { buildMenu, buildMenuLogged } from "./menuMobileView.js"
-import { getUser } from '../utils/decodeToken.js'
+import { buildMenu, buildMenuLogged } from './menuView.js'
+import { menuController } from './menuController.js'
 
-export function menuMobileController(nav) {    
-    const token = !!localStorage.getItem('token')
-    if (token) {
-        const user = getUser()
-        buildMenuLogged(nav, user.username)
-
-        const logout = document.querySelector('#logout')
-        if (logout) {
-            logout.addEventListener('click', (event) => {
-                event.preventDefault()
-                localStorage.removeItem('token')
-                window.location.href = '/'
-            })
+export function menuMobileController(nav) {
+    return menuController({
+        nav,
+        buildMenu,
+        buildMenuLogged,
+        extraSetup: () => {
+            const buttonMenu = document.querySelector('#mobile-menu-button')
+            if (buttonMenu) {
+                buttonMenu.addEventListener('click', () => {
+                    const mobileMenu = document.querySelector('#mobile-menu')
+                    mobileMenu.classList.toggle('hidden')
+                })
+            }
         }
-    } else {        
-        buildMenu(nav)
-    }
+    })
 }

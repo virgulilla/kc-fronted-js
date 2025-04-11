@@ -2,8 +2,7 @@ import { editAdController } from "./edit-ad/editAdController.js"
 import { searchController } from "./search/searchAdsController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
 import { loaderController } from "./loader/loaderController.js"
-import { menuDesktopController } from "./menu/menDesktopuController.js"
-import { menuMobileController } from "./menu/menuMobileController.js"
+import { menuController } from "./menu/menuController.js"
 
 document.addEventListener('DOMContentLoaded', () => {
   const form = document.querySelector('#edit-ad-form')  
@@ -11,9 +10,8 @@ document.addEventListener('DOMContentLoaded', () => {
   const { showNotification } = notificationsController(notifications) 
   const token = !!localStorage.getItem('token')
   const { loader } = loaderController()
-  const navDesktop = document.querySelector('#nav-desktop')
-  const navMobile = document.querySelector('#nav-mobile')
   const search = document.querySelector('#search')
+  const header = document.querySelector('header')
   
   if (!token) {
     window.location = '/login.html'
@@ -37,15 +35,8 @@ document.addEventListener('DOMContentLoaded', () => {
     showNotification(type, message)
   })  
   
-  menuDesktopController(navDesktop)  
-  menuMobileController(navMobile)
+  menuController(header)
   searchController(search) 
   editAdController(form)
-
-  const mobileMenuButton = document.querySelector('#mobile-menu-button')  
-  mobileMenuButton.addEventListener('click', () => {
-    const mobileMenu = document.querySelector('#mobile-menu')
-    mobileMenu.classList.toggle('hidden')
-  })
 
 })

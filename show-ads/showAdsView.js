@@ -1,11 +1,6 @@
-export const buildAd = (adElement, ad, showDeleteButton) => {
+export const buildAd = (adElement, ad) => {
   adElement.className = 'bg-white shadow-md rounded-lg overflow-hidden hover:shadow-lg transition-shadow'
-  const deleteButton = showDeleteButton ? 
-    `<div class="flex justify-end">
-  <button type="button" data-id=${ad.id} class="delete-ad bg-red-500 hover:bg-red-700 text-white font-semibold py-2 px-4 rounded-md transition">
-    Eliminar
-  </button>
-</div>` : ''
+  
  return `
         <a href="card.html?id=${ad.id}"><img src="${ad.photo || 'https://images.pexels.com/photos/28216688/pexels-photo-28216688/free-photo-of-acampada-de-otono.png?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'}" alt="${ad.name}"
             class="w-full h-48 object-cover" /></a>
@@ -16,7 +11,6 @@ export const buildAd = (adElement, ad, showDeleteButton) => {
           <span class="inline-block px-2 py-1 text-xs font-medium rounded-full ${
             ad.type === 'sell' ? 'bg-emerald-100 text-emerald-800' : 'bg-blue-100 text-blue-800'
           }">${ad.type === 'sell' ? 'Venta' : 'Compra'}</span>
-          ${deleteButton}
         </div>
       `   
 }

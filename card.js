@@ -1,6 +1,5 @@
 import { showAdController } from "./show-ad/showAdController.js"
-import { menuDesktopController } from "./menu/menDesktopuController.js"
-import { menuMobileController } from "./menu/menuMobileController.js"
+import { menuController } from "./menu/menuController.js"
 import { searchController } from "./search/searchAdsController.js"
 import { loaderController } from "./loader/loaderController.js"
 import { notificationsController } from "./notifications/notificationsController.js"
@@ -8,11 +7,13 @@ import { notificationsController } from "./notifications/notificationsController
 document.addEventListener('DOMContentLoaded', () => {
   const adContainer = document.getElementById('ad-card')
   const notifications = document.querySelector('.notifications')
-  const navDesktop = document.querySelector('#nav-desktop')
-  const navMobile = document.querySelector('#nav-mobile')
+  const header = document.querySelector('header')
   const {loader} = loaderController()
   const { showNotification } = notificationsController(notifications)
   const search = document.querySelector('#search')
+  const params = new URLSearchParams(window.location.search)
+  const adId = Number(params.get('id'))
+  
       
   adContainer.addEventListener('load-ad-started', () => {
     loader()
@@ -27,17 +28,33 @@ document.addEventListener('DOMContentLoaded', () => {
     showNotification(type, message)
   })
 
-  menuDesktopController(navDesktop)  
-  menuMobileController(navMobile)
-  menuDesktopController(navDesktop)
-  showAdController(adContainer)
+  adContainer.addEventListener('delete-ad-error', (event) => {
+    const { type, message } = event.detail
+    showNotification(type, message)
+  })
+
+  adContainer.addEventListener('delete-ad-success', (event) => {
+    const { type, message } = event.detail
+    showNotification(type, message)
+  })
+
+  adContainer.addEventListener('delete-ad-started', () => {
+    loader()
+  })
+
+  adContainer.addEventListener('delete-ad-finished', () => {
+    loader()
+  })
+
+
+  menuController(header)
+  if (adId) {
+    showAdController(adContainer, adId)    
+  } else {
+    window.location = '/'
+  }
+  
   notificationsController(notifications)
   searchController(search)
-
-  const mobileMenuButton = document.querySelector('#mobile-menu-button')  
-  mobileMenuButton.addEventListener('click', () => {
-    const mobileMenu = document.querySelector('#mobile-menu')
-    mobileMenu.classList.toggle('hidden')
-  })
 
 })
